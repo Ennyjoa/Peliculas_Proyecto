@@ -1,0 +1,82 @@
+// Archivo ---> app.js
+
+/*
+    Carpeta-->
+         D:\Cursos - 2021\MinTIC2022\Ciclo #4\apipeliculas_53883>
+   1)Importar los módulos requeridos.
+*/
+const express = require('express');
+const bodyParser = require('body-parser');
+const { query } = require('express');
+/*
+    2)Iniciar la configuración
+ */
+const app = express();
+
+// body-parse : convierte a json
+app.use(bodyParser.json());
+// convertir datos en json
+app.use(bodyParser.urlencoded({extends: true}));
+const port = 3300;
+
+/*
+    3)Iniciar de rutas
+*/
+//localhost:3300/prueba
+app.get("/prueba", function(request, response){
+    // Procesar la petición
+    let nombres = "Johanna Sanchez";
+
+    // Enviar la respuesta
+    responde.send(nombres);
+});
+
+app.get("/misiontic", function(request, response){
+    response.send("Mi primer API 53883")
+});
+
+// Agrendando Empoit
+// Metodo POST para Enviar información :
+// "/crear" --> empoit 
+app.post("/crear", function(request, response){
+    // capturamos datos de una el cuerpo de la petición
+    let data = request.body;
+    response.send({
+        "mensaje": "Capturando información del cuerpo",
+        "cuerpo": data
+    });
+});
+
+// Metodo/peticion --> PUT
+app.put("/actualizar", function(request, response){
+    let cuerpo = request.body;
+    // Query en formato JSON
+    let queryString = request.query;
+
+
+    response.send({ 
+        "mensaje": "Datos del cuerpo y QueryString",
+        "query": queryString,
+        "cuerpo": cuerpo
+    });
+});
+
+app.delete("/eliminar/:id/:nombre/:apellido", function(request, response){
+    let id = request.params.id;
+    let nombre = request.params.nombre;
+    let apellido = request.params.apellido;
+
+    response.send({
+        "mensaje": "Leyendo parámetros",
+        "parametros": [id, nombre, apellido]
+    })
+});
+
+
+/*
+    Configurar Dónde el API va estar monitoreando peticiones
+*/
+app.listen(port, function(){
+    console.log("API ejecutandose en el Puerto :" + port);
+});
+
