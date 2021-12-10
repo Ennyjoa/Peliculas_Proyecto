@@ -1,0 +1,15 @@
+.dv-pelicula{
+    border: 3px brown solid;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+
+.dv-poster{
+    text-align: center;
+
+}
+
+.dv-poster img{
+    width: 60%;
+}
